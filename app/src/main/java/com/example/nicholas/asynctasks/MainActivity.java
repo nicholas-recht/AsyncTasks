@@ -19,13 +19,19 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/*
+ * Main activity class
+ */
 public class MainActivity extends ActionBarActivity {
 
     private List<String> list;
     private ArrayAdapter<String> adapter;
     private ProgressBar progressBar;
 
+   /*
+    * Initializes the listview, adapter, and progressBar
+    * @param savedInstanceState
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +48,10 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-
+    /*
+    * Inflates the menu
+    * @param menu
+    * */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -50,6 +59,10 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
+    /*
+    * Handles the selection of menu items
+    * @param item selected
+    * */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -65,6 +78,10 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+    * writes the integers from 1 to 10 to a file
+    * @param view selected
+    * */
     public void writeFile(View view) {
         WriteFileTask task = new WriteFileTask();
         task.execute();
@@ -73,6 +90,10 @@ public class MainActivity extends ActionBarActivity {
         toast.show();
     }
 
+    /*
+    * reads the written file and displays it in the listview
+    * @param view selected
+    * */
     public void readFile(View view) {
         ReadFileTask task = new ReadFileTask();
         task.execute();
@@ -81,6 +102,10 @@ public class MainActivity extends ActionBarActivity {
         toast.show();
     }
 
+    /*
+    * clears the list of all content
+    * @param view selected
+    * */
     public void clearList(View view) {
         list.clear();
         adapter.notifyDataSetChanged();
@@ -90,6 +115,9 @@ public class MainActivity extends ActionBarActivity {
         toast.show();
     }
 
+    /*
+    * Handles writing to a file and updating the progress bar
+    * */
     private class WriteFileTask extends AsyncTask<Void, Integer, Void> {
 
         @Override
@@ -98,10 +126,10 @@ public class MainActivity extends ActionBarActivity {
             try {
                 OutputStreamWriter outputStream = new OutputStreamWriter(openFileOutput(filename, Context.MODE_PRIVATE));
 
-                for (int i = 0; i < 101; ++i) {
+                for (int i = 1; i <= 10; ++i) {
                     String out = String.valueOf(i) + "\n";
                     outputStream.write(out);
-                    Thread.sleep(50);
+                    Thread.sleep(250);
                     publishProgress(i);
                 }
 
@@ -124,6 +152,9 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    /*
+    * Handles updating the listview and the progres bar
+    * */
     private class ReadFileTask extends AsyncTask<Void, Integer, Void> {
 
         @Override
@@ -144,7 +175,7 @@ public class MainActivity extends ActionBarActivity {
 
                     publishProgress(i++);
 
-                    Thread.sleep(50);
+                    Thread.sleep(250);
                 }
 
             } catch (Exception e) {

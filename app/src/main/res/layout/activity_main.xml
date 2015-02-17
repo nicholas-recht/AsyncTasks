@@ -29,13 +29,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".33"
-            android:text="Write"
-            android:onClick="writeFile" />
+            android:text="Create"
+            android:onClick="writeFile"  />
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".33"
-            android:text="Read"
+            android:text="Load"
             android:onClick = "readFile" />
         <Button
             android:layout_width="0dp"

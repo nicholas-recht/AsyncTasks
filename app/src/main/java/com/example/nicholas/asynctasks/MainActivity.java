@@ -143,7 +143,7 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected void onProgressUpdate(Integer... progress) {
-            progressBar.setProgress(progress[0]);
+            progressBar.setProgress(progress[0] * 10);
         }
 
         @Override
@@ -187,7 +187,7 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected void onProgressUpdate(Integer... progress) {
-            progressBar.setProgress(progress[0]);
+            progressBar.setProgress(progress[0] * 10);
         }
 
         @Override
